@@ -1,0 +1,139 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+'writen for NUmerical Precision in 2009
+'01/27/2012 -- jct -- modifications to look at the GCG_3475_GE_Invo_Cus table to know which customers will get the GE Invoice
+'hook 15225
+
+F.ODBC.Connection!conA.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+V.Local.sSel.Declare(String)
+
+'v.passed.009001=customer id
+'01/27/2012 -- jct
+F.Intrinsic.String.Concat("select * from GCG_3475_GE_Invo_Cus where Customer='",V.Passed.009001,"'",V.Local.sSel)
+F.ODBC.Connection!conA.OpenLocalRecordsetRO("rstSel",V.Local.sSel)
+	F.Intrinsic.Control.If(V.ODBC.conA!rstSel.EOF,=,False)
+		F.Intrinsic.Control.CallSub(Create_invoice)
+	F.Intrinsic.Control.EndIf
+F.ODBC.conA!rstSel.Close
+
+F.Intrinsic.Control.CallSub(Unload)
+
+
+
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+
+F.ODBC.Connection!conA.Close
+f.Intrinsic.Control.End
+
+Program.Sub.Unload.End
+
+Program.Sub.Create_Invoice.Start
+
+V.Local.sTemplate.Declare(String)
+V.Local.sCopy.Declare(String)
+
+V.Local.sMisc.Declare(String)
+V.Local.sOHL.Declare(String)
+V.Local.sOLC.Declare(String)
+
+V.Local.sPO.Declare(String)
+V.Local.sPODte.Declare(String)
+V.Local.sLineNO.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sdesc.Declare(String)
+V.Local.sqty.Declare(String)
+V.Local.sPrice.Declare(String)
+V.Local.sLeftChar.Declare(String)
+V.Local.sInvDate.Declare(String)
+V.Local.m.Declare(String)
+V.Local.d.Declare(String)
+V.Local.y.Declare(String)
+V.Local.sInv.Declare(String)
+V.Local.sDir.Declare(String)
+
+
+V.Local.iCount.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.String.Concat(V.Caller.BusintDir,"\npi custom reports",V.Local.sDir)
+F.Intrinsic.String.Concat(V.Local.sDir,"\GE INVOICE TEMPLATE.xls",V.Local.sTemplate)
+F.Intrinsic.String.Concat(V.Local.sDir,"\GE Invoices\",V.Passed.009000,".xls",V.Local.sCopy)
+
+F.Intrinsic.File.CopyFile(V.Local.sTemplate,V.Local.sCopy)
+
+	F.Automation.MSExcel.CreateAppObject("Excel")
+	F.Automation.MSExcel.OpenWorkbook("Excel","Invoice_Copy",V.Local.sCopy)
+	F.Automation.MSExcel.OpenWorksheet("Invoice_Copy","Invoice",1)
+
+
+'-------------------------------------------------------------------------------------------------------------------------------------------------
+F.Intrinsic.String.Concat("'",V.Passed.009000,V.Local.sInv)
+V.Local.sInvDate.Set(V.Passed.009002)
+	F.Intrinsic.String.Left(V.Local.sInvDate,4,V.Local.y)
+	F.Intrinsic.String.Mid(V.Local.sInvDate,5,2,V.Local.m)
+	F.Intrinsic.String.Mid(V.Local.sInvDate,7,2,V.Local.d)
+		F.Intrinsic.String.Concat(V.Local.m,"/",V.local.d,"/",V.Local.y,V.Local.sInvDate)
+
+
+V.Local.iRow.Set(67)
+F.Intrinsic.String.Concat("select CUSTOMER_PO, DATE_ORDER, ORDER_LINE, PART, DESCRIPTION, QTY_SHIPPED, PRICE from V_ORDER_HIST_LINE where INVOICE='",V.Passed.009000,"'and ORDER_LINE <>' 8000' order by ORDER_LINE",V.Local.sOHL)
+F.ODBC.Connection!conA.OpenRecordsetRO("rstOHL",V.Local.sOHL)
+		V.Local.sPO.Set(V.ODBC.conA!rstOHL.FieldValTrim!CUSTOMER_PO)
+			F.Intrinsic.String.Replace(V.Local.sPO," ","",V.Local.sPO)
+		V.Local.sPODte.Set(V.ODBC.conA!rstOHL.FieldValTrim!DATE_ORDER)
+
+			F.Automation.MSExcel.WriteCell("Invoice",9,4,V.Local.sInv)
+			F.Automation.MSExcel.WriteCell("Invoice",10,4,V.Local.sInvDate)
+			F.Automation.MSExcel.WriteCell("Invoice",41,4,V.Local.sPO)
+			F.Automation.MSExcel.WriteCell("Invoice",42,4,V.Local.sPODte)
+
+
+		V.Local.sLineNO.Set(V.ODBC.conA!rstOHL.FieldValTrim!ORDER_LINE)
+			F.Intrinsic.String.Left(V.Local.sLineNO,3,V.Local.sLineNO)
+			F.Intrinsic.String.Concat("'",V.Local.sLineNO,V.Local.sLineNO)
+		V.Local.sPart.Set(V.ODBC.conA!rstOHL.FieldValTrim!PART)
+		V.Local.sdesc.Set(V.ODBC.conA!rstOHL.FieldValTrim!DESCRIPTION)
+		V.Local.sqty.Set(V.ODBC.conA!rstOHL.FieldValTrim!QTY_SHIPPED)
+		V.Local.sPrice.Set(V.ODBC.conA!rstOHL.FieldValTrim!PRICE)
+
+			F.Intrinsic.String.Left(V.Local.sPart,1,V.Local.sLeftChar)
+				F.Intrinsic.Control.If(V.Local.sLeftChar,=,"0")
+					F.Intrinsic.String.Concat("'",V.Local.sPart,V.Local.sPart)
+				F.Intrinsic.Control.EndIf
+
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,2,V.Local.sLineNO)
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,3,V.Local.sPart)
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,5,V.Local.sdesc)
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,7,V.Local.sqty)
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,8,"ea")
+			F.Automation.MSExcel.WriteCell("Invoice",V.Local.iRow,9,V.Local.sPrice)
+
+F.ODBC.conA!rstOHL.Close
+
+'-------------------------------------------------------------------------------------------------------------------------------------------------
+
+	F.Automation.MSExcel.SaveWorkbook("Invoice_Copy")
+
+	F.Automation.Generic.DestroyObject("Excel")
+	F.Automation.Generic.DestroyObject("Invoice_Copy")
+	F.Automation.Generic.DestroyObject("Invoice")
+
+
+
+Program.Sub.Create_Invoice.End
+
+
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$12:00:00 AM$}$False
+Program.Sub.Comments.End
