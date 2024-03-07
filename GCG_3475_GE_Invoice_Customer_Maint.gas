@@ -1,0 +1,322 @@
+Program.Sub.ScreenSU.Start
+
+Gui.SS_Form1..Create
+Gui.SS_Form1..Caption("GE Invoice Customer Maintenance")
+Gui.SS_Form1..Size(5520,3975)
+Gui.SS_Form1..Position(0,0)
+Gui.SS_Form1..AlwaysOnTop(False)
+Gui.SS_Form1..FontName("Arial")
+Gui.SS_Form1..FontSize(8)
+Gui.SS_Form1..ForeColor(0)
+Gui.SS_Form1..Backcolor(-2147483633)
+Gui.SS_Form1..ControlBox(True)
+Gui.SS_Form1..MaxButton(False)
+Gui.SS_Form1..MinButton(False)
+Gui.SS_Form1..MousePointer(0)
+Gui.SS_Form1..Moveable(True)
+Gui.SS_Form1..Sizeable(False)
+Gui.SS_Form1..ShowInTaskBar(True)
+Gui.SS_Form1..TitleBar(True)
+
+Gui.SS_Form1..Event(unload,Unload)
+
+Gui.SS_Form1.lbl_txtCust.Create(label)
+Gui.SS_Form1.lbl_txtCust.Caption("Customer")
+Gui.SS_Form1.lbl_txtCust.Visible(True)
+Gui.SS_Form1.lbl_txtCust.Size(1800,200)
+Gui.SS_Form1.lbl_txtCust.Zorder(1)
+Gui.SS_Form1.lbl_txtCust.Position(100,135)
+Gui.SS_Form1.lbl_txtCust.Enabled(True)
+Gui.SS_Form1.lbl_txtCust.Alignment(0)
+Gui.SS_Form1.lbl_txtCust.FontName("Arial")
+Gui.SS_Form1.lbl_txtCust.FontSize(8)
+Gui.SS_Form1.lbl_txtCust.Backcolor(-2147483633)
+Gui.SS_Form1.lbl_txtCust.BackStyle(0)
+Gui.SS_Form1.lbl_txtCust.Tooltip("")
+Gui.SS_Form1.lbl_txtCust.ControlGroup(0)
+
+
+Gui.SS_Form1.txtCust.Create(textbox)
+Gui.SS_Form1.txtCust.Text("")
+Gui.SS_Form1.txtCust.Visible(True)
+Gui.SS_Form1.txtCust.Size(1800,330)
+Gui.SS_Form1.txtCust.Zorder(0)
+Gui.SS_Form1.txtCust.Position(100,335)
+Gui.SS_Form1.txtCust.Enabled(True)
+Gui.SS_Form1.txtCust.Alignment(0)
+Gui.SS_Form1.txtCust.FontName("Arial")
+Gui.SS_Form1.txtCust.FontSize(8)
+Gui.SS_Form1.txtCust.Backcolor(16777215)
+Gui.SS_Form1.txtCust.BorderStyle(1)
+Gui.SS_Form1.txtCust.TabStop(True)
+Gui.SS_Form1.txtCust.TabIndex(1)
+Gui.SS_Form1.txtCust.Tooltip("")
+Gui.SS_Form1.txtCust.ControlGroup(0)
+Gui.SS_Form1.txtCust.DefaultValue("")
+
+
+Gui.SS_Form1.cmd_txtCust.Create(button)
+Gui.SS_Form1.cmd_txtCust.Caption("^")
+Gui.SS_Form1.cmd_txtCust.Visible(True)
+Gui.SS_Form1.cmd_txtCust.Size(330,330)
+Gui.SS_Form1.cmd_txtCust.Zorder(0)
+Gui.SS_Form1.cmd_txtCust.Position(1985,335)
+Gui.SS_Form1.cmd_txtCust.Enabled(True)
+Gui.SS_Form1.cmd_txtCust.FontName("Arial")
+Gui.SS_Form1.cmd_txtCust.FontSize(8)
+Gui.SS_Form1.cmd_txtCust.TabStop(True)
+Gui.SS_Form1.cmd_txtCust.TabIndex(2)
+Gui.SS_Form1.cmd_txtCust.Tooltip("")
+Gui.SS_Form1.cmd_txtCust.ControlGroup(0)
+Gui.SS_Form1.cmd_txtCust.DefaultValue("")
+
+Gui.SS_Form1.cmd_txtCust.Event(click,cmd_txtcust_click)
+
+Gui.SS_Form1.lbl_txtName.Create(label)
+Gui.SS_Form1.lbl_txtName.Caption("Name")
+Gui.SS_Form1.lbl_txtName.Visible(True)
+Gui.SS_Form1.lbl_txtName.Size(1800,200)
+Gui.SS_Form1.lbl_txtName.Zorder(1)
+Gui.SS_Form1.lbl_txtName.Position(2455,135)
+Gui.SS_Form1.lbl_txtName.Enabled(True)
+Gui.SS_Form1.lbl_txtName.Alignment(0)
+Gui.SS_Form1.lbl_txtName.FontName("Arial")
+Gui.SS_Form1.lbl_txtName.FontSize(8)
+Gui.SS_Form1.lbl_txtName.Backcolor(-2147483633)
+Gui.SS_Form1.lbl_txtName.BackStyle(0)
+Gui.SS_Form1.lbl_txtName.Tooltip("")
+Gui.SS_Form1.lbl_txtName.ControlGroup(0)
+
+
+Gui.SS_Form1.txtName.Create(textbox)
+Gui.SS_Form1.txtName.Text("")
+Gui.SS_Form1.txtName.Visible(True)
+Gui.SS_Form1.txtName.Size(1800,330)
+Gui.SS_Form1.txtName.Zorder(0)
+Gui.SS_Form1.txtName.Position(2455,335)
+Gui.SS_Form1.txtName.Enabled(True)
+Gui.SS_Form1.txtName.Alignment(0)
+Gui.SS_Form1.txtName.FontName("Arial")
+Gui.SS_Form1.txtName.FontSize(8)
+Gui.SS_Form1.txtName.Backcolor(16777215)
+Gui.SS_Form1.txtName.BorderStyle(1)
+Gui.SS_Form1.txtName.TabStop(True)
+Gui.SS_Form1.txtName.TabIndex(4)
+Gui.SS_Form1.txtName.Tooltip("")
+Gui.SS_Form1.txtName.ControlGroup(0)
+Gui.SS_Form1.txtName.DefaultValue("")
+
+
+Gui.SS_Form1.lvwCust.Create(listview)
+Gui.SS_Form1.lvwCust.Visible(True)
+Gui.SS_Form1.lvwCust.Size(5055,2000)
+Gui.SS_Form1.lvwCust.Zorder(0)
+Gui.SS_Form1.lvwCust.Position(55,835)
+Gui.SS_Form1.lvwCust.Enabled(True)
+Gui.SS_Form1.lvwCust.BorderStyle(1)
+Gui.SS_Form1.lvwCust.FontName("Arial")
+Gui.SS_Form1.lvwCust.FontSize(8)
+Gui.SS_Form1.lvwCust.TabStop(True)
+Gui.SS_Form1.lvwCust.TabIndex(5)
+Gui.SS_Form1.lvwCust.Tooltip("")
+Gui.SS_Form1.lvwCust.View(3)
+Gui.SS_Form1.lvwCust.AddListViewColumn("Customer",2470,0)
+Gui.SS_Form1.lvwCust.AddListViewColumn("Name",2470,0)
+
+Gui.SS_Form1.lvwCust.Event(lostfocus,lvwcust_click)
+Gui.SS_Form1.lvwCust.Event(itemclick,lvwcust_click)
+
+Gui.SS_Form1.cmd_lvwCustAdd.Create(button)
+Gui.SS_Form1.cmd_lvwCustAdd.Caption("Add")
+Gui.SS_Form1.cmd_lvwCustAdd.Visible(True)
+Gui.SS_Form1.cmd_lvwCustAdd.Size(775,330)
+Gui.SS_Form1.cmd_lvwCustAdd.Zorder(0)
+Gui.SS_Form1.cmd_lvwCustAdd.Position(4340,335)
+Gui.SS_Form1.cmd_lvwCustAdd.Enabled(True)
+Gui.SS_Form1.cmd_lvwCustAdd.FontName("Arial")
+Gui.SS_Form1.cmd_lvwCustAdd.FontSize(8)
+Gui.SS_Form1.cmd_lvwCustAdd.TabStop(True)
+Gui.SS_Form1.cmd_lvwCustAdd.TabIndex(6)
+Gui.SS_Form1.cmd_lvwCustAdd.Tooltip("")
+Gui.SS_Form1.cmd_lvwCustAdd.ControlGroup(0)
+Gui.SS_Form1.cmd_lvwCustAdd.DefaultValue("")
+
+Gui.SS_Form1.cmd_lvwCustAdd.Event(click,cmd_lvwcustadd_click)
+
+Gui.SS_Form1.cmd_lvwCustDelete.Create(button)
+Gui.SS_Form1.cmd_lvwCustDelete.Caption("Delete")
+Gui.SS_Form1.cmd_lvwCustDelete.Visible(True)
+Gui.SS_Form1.cmd_lvwCustDelete.Size(1000,330)
+Gui.SS_Form1.cmd_lvwCustDelete.Zorder(0)
+Gui.SS_Form1.cmd_lvwCustDelete.Position(100,2920)
+Gui.SS_Form1.cmd_lvwCustDelete.Enabled(True)
+Gui.SS_Form1.cmd_lvwCustDelete.FontName("Arial")
+Gui.SS_Form1.cmd_lvwCustDelete.FontSize(8)
+Gui.SS_Form1.cmd_lvwCustDelete.TabStop(True)
+Gui.SS_Form1.cmd_lvwCustDelete.TabIndex(7)
+Gui.SS_Form1.cmd_lvwCustDelete.Tooltip("")
+Gui.SS_Form1.cmd_lvwCustDelete.ControlGroup(0)
+Gui.SS_Form1.cmd_lvwCustDelete.DefaultValue("")
+
+Gui.SS_Form1.cmd_lvwCustDelete.Event(click,cmd_lvwcustdelete_click)
+
+Gui.SS_Form1.cmd_lvwCustClear.Create(button)
+Gui.SS_Form1.cmd_lvwCustClear.Caption("Clear")
+Gui.SS_Form1.cmd_lvwCustClear.Visible(True)
+Gui.SS_Form1.cmd_lvwCustClear.Size(1000,330)
+Gui.SS_Form1.cmd_lvwCustClear.Zorder(0)
+Gui.SS_Form1.cmd_lvwCustClear.Position(1185,2920)
+Gui.SS_Form1.cmd_lvwCustClear.Enabled(True)
+Gui.SS_Form1.cmd_lvwCustClear.FontName("Arial")
+Gui.SS_Form1.cmd_lvwCustClear.FontSize(8)
+Gui.SS_Form1.cmd_lvwCustClear.TabStop(True)
+Gui.SS_Form1.cmd_lvwCustClear.TabIndex(8)
+Gui.SS_Form1.cmd_lvwCustClear.Tooltip("")
+Gui.SS_Form1.cmd_lvwCustClear.ControlGroup(0)
+Gui.SS_Form1.cmd_lvwCustClear.DefaultValue("")
+
+Gui.SS_Form1.cmd_lvwCustClear.Event(click,cmd_lvwcustclear_click)
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+F.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+'fill screen with stored customer information
+F.ODBC.Connection!Con.OpenRecordsetRO("rstSel","select * from GCG_3475_GE_Invo_Cus order by Customer")
+	F.Intrinsic.Control.DoUntil(V.ODBC.Con!rstSel.EOF,=,True)
+		Gui.SS_Form1.lvwCust.AddListItem(V.ODBC.Con!rstSel.FieldValTrim!Customer,V.ODBC.Con!rstSel.FieldValTrim!Customer)
+		Gui.SS_Form1.lvwCust.SetListItemSubItemText(V.ODBC.Con!rstSel.FieldValTrim!Customer,1,V.ODBC.Con!rstSel.FieldValTrim!Name)
+	F.ODBC.Con!rstSel.MoveNext
+	F.Intrinsic.Control.Loop
+F.ODBC.Con!rstSel.Close
+
+Gui.SS_Form1..show
+
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+
+f.ODBC.Connection!Con.Close
+f.Intrinsic.Control.End
+
+Program.Sub.Unload.End
+
+program.sub.cmd_txtcust_click.start
+
+V.Local.sSel.Declare(String)
+V.Local.sret.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.String.Split("Customer*!*Name*!*City*!*State*!*Zip*!*Country*!*Telephone*!*Location","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("1000*!*2500*!*1500*!*800*!*1000*!*1000*!*1000*!*1000","*!*",V.Local.iWidths)
+'browse for customers
+F.Intrinsic.String.Concat("select V_Customer_Master.Customer, Name_Customer, City, State, Zip, Country, Telephone, Order_Curr","",V.Local.sSel)
+F.Intrinsic.String.Concat(V.Local.sSel," from V_Customer_Master left outer join Customer_Intl on V_Customer_Master.Customer=Customer_Intl.Customer",V.Local.sSel)
+F.Intrinsic.String.Concat(V.Local.sSel," where Customer_Intl.Rec='6' order by V_Customer_Master.Customer",V.Local.sSel)
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Customer","Con",V.Local.sSel,V.Local.sTitles,V.Local.iWidths,11000,8000,V.Local.sret)
+F.Intrinsic.Control.If(V.Local.sret,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sret,"*!*",V.Local.sret)
+'put customer and name into text boxes on the screen
+	Gui.SS_Form1.txtCust.Text(V.Local.sret(0))
+	Gui.SS_Form1.txtName.Text(V.Local.sret(1))
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtcust_click.end
+
+program.sub.cmd_lvwcustadd_click.start
+
+V.Local.sSel.Declare(String)
+
+F.Intrinsic.String.Concat("select Customer,Name from GCG_3475_GE_Invo_Cus where Customer='",V.Screen.SS_Form1!txtCust.Text,"'",V.Local.sSel)
+F.ODBC.Connection!Con.OpenLocalRecordsetRW("rstSel",V.Local.sSel)
+'if customer no already on the table
+	F.Intrinsic.Control.If(V.ODBC.Con!rstSel.EOF,=,True)
+'add customer to the list view
+		Gui.SS_Form1.lvwCust.AddListItem(V.Screen.SS_Form1!txtCust.Text,V.Screen.SS_Form1!txtCust.Text)
+		Gui.SS_Form1.lvwCust.SetListItemSubItemText(V.Screen.SS_Form1!txtCust.Text,1,V.Screen.SS_Form1!txtName.Text)
+'add customer to the table
+		F.ODBC.Con!rstSel.AddNew
+			F.ODBC.Con!rstSel.Set!Customer(V.Screen.SS_Form1!txtCust.Text.trim)
+			F.ODBC.Con!rstSel.Set!Name(V.Screen.SS_Form1!txtName.Text.trim)
+		F.ODBC.Con!rstSel.Update
+	F.Intrinsic.Control.EndIf
+F.ODBC.Con!rstSel.Close
+'clear text boxes on the screen
+Gui.SS_Form1.txtCust.Text("")
+Gui.SS_Form1.txtName.Text("")
+
+program.sub.cmd_lvwcustadd_click.end
+
+program.sub.cmd_lvwcustdelete_click.start
+
+V.Local.sDel.Declare(String)
+'delet customer record from the table
+F.Intrinsic.String.Concat("delete from GCG_3475_GE_Invo_Cus where Customer='",V.Screen.SS_Form1!txtCust.Text,"'",V.Local.sDel)
+F.ODBC.Connection!Con.Execute(V.Local.sDel)
+'remove the record from the list view
+Gui.SS_Form1.lvwCust.RemoveItem(V.Screen.SS_Form1!txtCust.Text)
+
+'clear text boxes on the screen
+Gui.SS_Form1.txtCust.Text("")
+Gui.SS_Form1.txtName.Text("")
+
+program.sub.cmd_lvwcustdelete_click.end
+
+program.sub.cmd_lvwcustclear_click.start
+
+'clear text boxes on the screen
+Gui.SS_Form1.txtCust.Text("")
+Gui.SS_Form1.txtName.Text("")
+
+program.sub.cmd_lvwcustclear_click.end
+
+program.sub.lvwcust_click.start
+
+
+'ITEMKEY
+V.Local.sRet.Declare(String)
+V.Local.iOrd.Declare(Long)
+
+'get item ordinal
+Gui.SS_Form1.lvwCust.ListitemKeyToOrdinal(V.Args.ITEMKEY,V.Local.iOrd)
+
+'get text line
+V.Local.sRet.Set(V.Screen.SS_Form1!lvwCust.ListItemTextExtended(V.Local.iOrd))
+'split line
+F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+'put values in text boxes
+Gui.SS_Form1.txtCust.Text(V.Local.sRet(0))
+Gui.SS_Form1.txtName.Text(V.Local.sRet(1))
+
+
+
+
+
+
+
+
+
+program.sub.lvwcust_click.end
+
+Program.Sub.Comments.Start
+${$0$}$GCG_GE_Invoice_Customer_Maint$}$JCT$}$1/26/2012$}$False
+${$2$}$$}$$}$0$}$2$}$ATG_GE_Invoice.gas$}$1/26/2012 7:46:24 AM$}$
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Project for Numerical Precision.
+The ATG_GE_Invoice.gas creates a custom Invoice form for specific customers.  Originally, the customers were hard coded in the GAB script.  This maintenance screen will allow them to add/remove customers that will get the custom Invoice form.
+Program.Sub.Comments.End
+Program.Sub.ScreenSS.Start
+SS_Form1{{CAPTION::GE Invoice Customer Maintenance
+SS_Form1.CTRL{{NAME::txtCust\\TYPE::2\\CAPTION::Customer\\RANGE::lvwCust\\GROUP::1\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::txtName\\TYPE::2\\CAPTION::Name\\RANGE::lvwCust\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::lvwCust\\TYPE::7\\GROUP::-1\\BROWSER::0\\SIZE::1
+
+Program.Sub.ScreenSS.End
+
